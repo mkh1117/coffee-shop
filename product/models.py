@@ -1,0 +1,11 @@
+from django.db import models
+
+
+class Product(models.Model):
+    name = models.CharField(max_length=50)
+    icon = models.ImageField(upload_to='products/', null=True, blank=True)
+    details = models.TextField()
+    price = models.IntegerField()
+
+    def __str__(self):
+        return self.name
