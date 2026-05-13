@@ -1,0 +1,106 @@
+{% load static %}
+<div id="modal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close-btn" id="closeModalBtn">&times;</span>
+
+        <div class="container" id="container">
+
+            <!-- SIGN UP -->
+            <div class="form-container sign-up-container">
+
+                <form method="post" action="{% url 'account:register' %}">
+                    {% csrf_token %}
+
+                    <h1 class="h1">ثبت نام</h1>
+
+                    <span class="span">
+                        حساب جدید بساز
+                    </span>
+
+                    <input class="input" type="text" name="username" placeholder="نام کاربری">
+
+                    <input class="input" type="password" name="password" placeholder="رمز عبور">
+
+                    <input class="input" type="password" name="rePassword" placeholder="تکرار رمز عبور">
+
+                    <button type="submit" class="button">
+                        ثبت نام
+                    </button>
+
+                </form>
+
+            </div>
+
+            <!-- LOGIN -->
+            <div class="form-container sign-in-container">
+
+                <form method="post" action="{% url 'account:login' %}">
+                    {% csrf_token %}
+
+                    <h1 class="h1">ورود</h1>
+
+                    <span class="span">
+                        وارد حساب خود شوید
+                    </span>
+
+                    <input class="input" type="text" name="username" placeholder="نام کاربری">
+
+                    <input class="input" type="password" name="password" placeholder="رمز عبور">
+
+                    <button type="submit" class="button">
+                        ورود
+                    </button>
+
+                </form>
+
+            </div>
+
+            <!-- OVERLAY -->
+            <div class="overlay-container">
+
+                <div class="overlay">
+
+                    <div class="overlay-panel overlay-right">
+
+                        <h1 class="h1">
+                            سلام دوست من
+                        </h1>
+
+                        <p class="p">
+                            برای شروع ثبت نام کن
+                        </p>
+
+                        <button class="button ghost" id="signUp">
+                            ثبت نام
+                        </button>
+
+                    </div>
+
+                    <div class="overlay-panel overlay-left">
+
+                        <h1 class="h1">
+                            خوش برگشتی!
+                        </h1>
+
+                        <p class="p">
+                            اگر حساب داری وارد شو
+                        </p>
+
+                        <button class="button ghost" id="signIn">
+                            ورود
+                        </button>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

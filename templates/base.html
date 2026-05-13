@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Coffee Shop{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    {% block css %}{% endblock %}
+</head>
+
+<body>
+    {% include 'modal.html' %}
+    {% include 'header.html' %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% include 'footer.html' %}
+
+    <script src="{% static 'js/script.js' %}"></script>
+    <script>
+    {% for msg in messages %}
+        alertify.set('notifier', 'position', 'top-right');
+        alertify.success('{{ msg }}');
+    {% endfor %}
+</script>
+
+    {% block js %}{% endblock %}
+
+
+</body>
+
+</html>

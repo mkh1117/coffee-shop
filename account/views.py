@@ -35,6 +35,7 @@ def login_user(request):
         user = User.objects.filter(username=username).first()
         if user:
             if user.check_password(password):
+                login(request, user)
                 messages.error(request, 'شما با موفقیت وارد شدید')
             else:
                 messages.error(request, 'رمز عبور نادرست است')

@@ -1,392 +1,251 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coffee Website </title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.rtl.min.css"/>
-    <!-- Bootstrap theme -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/themes/bootstrap.rtl.min.css"/>
 
 
-    <link rel="stylesheet" href="{% static 'style/style.css' %}">
-</head>
-<body>
-<div id="modal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn" id="closeModalBtn">&times;</span>
-        <div class="container" id="container">
-            <div class="form-container sign-up-container">
-                <form method="post" action="{% url 'account:register' %}">
-                    {% csrf_token %}
-                    <h1 class="h1">Create Account</h1>
-                    <!-- <div class="social-container">
-                                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-                            </div> -->
-                    <span class="span">or use your email for registration</span>
-                    <input class="input" type="text" name="username" placeholder="UserName"/>
-                    <input class="input" type="password" name="password" placeholder="Password"/>
-                    <input class="input" type="password" name="rePassword" placeholder="RePassword"/>
-                    <button type="submit" class="button">Sign Up</button>
-                </form>
-            </div>
-            <div class="form-container sign-in-container">
-                <form method="post" action="{% url 'account:login' %}">
-                    <h1 class="h1">Login</h1>
-                    <!-- <div class="social-container">
-                                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-                            </div> -->
-                    <span class="span">or use your account</span>
-                    {% csrf_token %}
-                    <input class="input" type="text" name="username" placeholder="usernamet"/>
-                    <input class="input" type="password" name="password" placeholder="Password"/>
-                    <a href="#">Forgot your password?</a>
-                    <button type="submit" class="button">Login</button>
-                </form>
-            </div>
-            <div class="overlay-container">
-                <div class="overlay">
-                    <div class="overlay-panel overlay-left">
-                        <h1 class="h1">Welcome Back!</h1>
-                        <p class="p">To keep connected with us please login with your personal info</p>
-                        <button class="button ghost" id="signIn">Login</button>
-                    </div>
-                    <div class="overlay-panel overlay-right">
-                        <h1 class="h1">Hello, Friend!</h1>
-                        <p class="p">Enter your personal details and start journey with us</p>
-                        <button class="button ghost" id="signUp">Sign Up</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<header class="header">
-
-    <a href="#" class="logo">
-        <img src="{% static 'Images/logo.png' %}" alt="">
-    </a>
-
-    <nav class="navbar">
-        <a href="#home">خانه</a>
-        <a href="#about">درباره ما</a>
-        <a href="#menu">منو</a>
-        <a href="#products">محصولات</a>
-        <a href="#review">review</a>
-        <a href="#contact">تماس با ما</a>
-        <a href="#blogs">وبلاگ</a>
-    </nav>
-
-    <div class="icons">
-        <div class="fas fa-search" id="search-btn"></div>
-        <div class="fas fa-shopping-cart" id="cart-btn"></div>
-        <button {% if not user.is_authenticated %} id="openModalBtn" {% endif %}class="search-btn" type="button">
-            {% if user.is_authenticated %}<a href="{% url 'account:logout' %}">LogOut</a>{% else %}Login /
-                SignUp{% endif %}</button>
-        <div class="fas fa-bars" id="menu-btn"></div>
-
-    </div>
-
-    <div class="search-form">
-        <input type="search" id="search-box" placeholder="search here ....">
-        <label for="search-box" class="fas fa-search"></label>
-    </div>
-
-    <div class="cart-items-container">
-        {% for p in carts %}
-            <div class="cart-item">
-                <span class="fas fa-times"></span>
-                <img src="
-                        
-                        
-                        {% if p.product.icon %}{{ p.product.icon.url }}{% else %}{% static 'Images/p1.png' %}{% endif %}"
-                     alt="">
-                <div class="content">
-                    <h3>{{ p.product.name }}</h3>
-                    <div class="price">${{ p.product.price }}/-</div>
-                </div>
-            </div>
-        {% endfor %}
-        <a href="#" class="btn">checkout now</a>
-    </div>
-
-</header>
+{% block title %}
+Cfood
+{% endblock %}
 
 
-<section class="home" id="home" dir="rtl">
-    <div class="content">
-        <h3>قهوه تازه برای شروع یک صبح دل‌انگیز</h3>
+{% block css %}
+<link rel="stylesheet" href="{% static 'style/style.css' %}">
+{% endblock %}
+
+
+
+{% block content %}
+<section class="hero">
+
+    <div class="hero-right">
+
+        <span class="hero-mini-title">
+            فروشگاه آنلاین فست فود و محصولات گوشتی
+        </span>
+
+        <h1>
+            طعم خوب،
+            <br>
+            انتخاب هوشمندانه
+        </h1>
 
         <p>
-            طعم بی‌نظیر قهوه را با دانه‌های تازه و عطر دلنشین تجربه کنید.
-            هر فنجان قهوه، آغاز یک روز پرانرژی و خاطره‌انگیز است.
+            سفارش آنلاین انواع فست‌فود، سوسیس، ژامبون و محصولات پروتئینی
+            با کیفیت بالا و ارسال سریع.
         </p>
 
-        <a href="#" class="btn">همین حالا سفارش دهید</a>
-    </div>
-</section>
+        <div class="hero-buttons">
 
-<section class="about" id="about" dir="rtl ">
-    <h1 class="heading"><span>درباره</span> ما</h1>
+            <a href="#" class="primary-btn">
+                مشاهده فست فود
+            </a>
 
-    <div class="row">
+            <a href="#" class="secondary-btn">
+                مشاهده محصولات
+            </a>
 
-        <div class="content">
-            <h3>چه چیزی قهوه ما را خاص می‌کند؟</h3>
-
-            <p>
-                ما با استفاده از بهترین دانه‌های قهوه و ترکیبی منحصربه‌فرد،
-                طعمی ماندگار و متفاوت را برای شما فراهم کرده‌ایم.
-                کیفیت بالا، عطر دلنشین و تازگی همیشگی،
-                راز محبوبیت قهوه‌های ماست.
-            </p>
-
-            <p>
-                هدف ما خلق لحظاتی آرام و لذت‌بخش برای شماست.
-                از اولین جرعه تا آخرین قطره،
-                طعم واقعی قهوه را احساس خواهید کرد.
-            </p>
-
-            <a href="#" class="btn">همین حالا سفارش دهید</a>
-        </div>
-
-
-        <div class="image">
-            <img src="{% static 'Images/main.png' %}" alt="">
         </div>
 
     </div>
 
-</section>
-
-<section class="menu" id="menu">
-    <h1 class="heading">our <span>menu</span></h1>
-
-    <div class="box-container">
-        {% for p in products1 %}
-            <div class="box">
-                <img src="{% if p.icon %}{{ p.icon.url }}{% else %}{% static 'Images/p1.png' %}{% endif %}" alt="">
-                <h3>{{ p.name }}</h3>
-                <div class="price">${{ p.price }} <span>20.99</span></div>
-                <a href="#" class="btn">add to cart</a>
-            </div>
-        {% endfor %}
+    <div class="hero-left">
+        <img src="{% static 'Images/burger.png' %}" alt="">
     </div>
 
 </section>
-<section class="products" id="products">
 
-    <h1 class="heading">our <span>products</span></h1>
-    <div class="box-container">
-        {% for p in products2 %}
-            <div class="box">
-                <div class="icons">
-                    <a href="" class="fas fa-shopping-cart"></a>
-                    <a href="" class="fas fa-heart"></a>
-                    <a href="" class="fas fa-eye"></a>
-                </div>
-                <div class="image">
-                    <img src="{% if p.icon %}{{ p.icon.url }}{% else %}{% static 'Images/p1.png' %}{% endif %}" alt="">
-                </div>
-                <div class="content">
-                    <h3>{{ p.name }}</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <div class="price">${{ p.price }} <span>$19.99</span></div>
-                </div>
-            </div>
-        {% endfor %}
+<section class="features">
+
+    <div class="feature-box">
+        <i class="fas fa-truck"></i>
+
+        <div>
+            <h3>ارسال سریع</h3>
+            <p>تحویل در کمترین زمان</p>
+        </div>
     </div>
 
+    <div class="feature-box">
+        <i class="fas fa-shield-alt"></i>
+
+        <div>
+            <h3>ضمانت کیفیت</h3>
+            <p>کیفیت تضمینی محصولات</p>
+        </div>
+    </div>
+
+    <div class="feature-box">
+        <i class="fas fa-lock"></i>
+
+        <div>
+            <h3>پرداخت امن</h3>
+            <p>درگاه امن بانکی</p>
+        </div>
+    </div>
+
+    <div class="feature-box">
+        <i class="fas fa-headset"></i>
+
+        <div>
+            <h3>پشتیبانی</h3>
+            <p>پشتیبانی ۲۴ ساعته</p>
+        </div>
+    </div>
 
 </section>
 
+<section class="about" id="about">
 
-<section class="review" id="review">
-    <h1 class="heading">customer's <span>review</span></h1>
-    <div class="box-container">
-
-        <div class="box">
-            <img src="{% static 'Images/rev1.jpg' %}" alt="" class="quote">
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Illo ab recusandae rerum enim dolor deserunt nihil, minima corporis
-                animi nostrum eum natus,
-                consequuntur unde magni similique pariatur earum incidunt dolore.
-            </p>
-            <img src="{% static 'Images/rev1.jpg' %}" class="user" alt="">
-            <h3>john doe</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div>
-        <div class="box">
-            <img src="{% static 'Images/rev1.jpg' %}" alt="" class="quote">
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Illo ab recusandae rerum enim dolor deserunt nihil, minima corporis
-                animi nostrum eum natus,
-                consequuntur unde magni similique pariatur earum incidunt dolore.
-            </p>
-            <img src="{% static 'Images/rev2.jpg' %}" class="user" alt="">
-            <h3>john doe</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div>
-        <div class="box">
-            <img src="{% static 'Images/rev3.jpg' %}" alt="" class="quote">
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Illo ab recusandae rerum enim dolor deserunt nihil, minima corporis
-                animi nostrum eum natus,
-                consequuntur unde magni similique pariatur earum incidunt dolore.
-            </p>
-            <img src="{% static 'Images/rev3.jpg' %}" class="user" alt="">
-            <h3>john doe</h3>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </div>
-        </div>
-
+    <div class="section-title">
+    <span>چرا Cfood؟</span>
     </div>
-</section>
 
-<section class="contact" id="contact">
+    <div class="about-container">
 
-    <h1 class="heading"><span>contact</span> us</h1>
-    <div class="row">
+        <div class="about-image">
+            <img src="{% static 'Images/pizza.png' %}" alt="">
+        </div>
 
-        <iframe class="map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3474.0542175854503!2d55.668032!3d29.456427099999992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3efffb54ef8c3811%3A0x9025db0c0319c564!2z2qnYqtin2KjZgdix2YjYtNuMINiz2LHZiA!5e0!3m2!1sen!2sde!4v1711458286452!5m2!1sen!2sde"
-                width="600" height="450" style="border:0;"
-                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        <div class="about-content">
 
-        </iframe>
+            <h3>
+                فروشگاهی تخصصی برای عاشقان فست‌فود
+            </h3>
 
-        <form action="">
-            <h3>get in touch</h3>
-            <div class="inputBax">
-                <span class="fas fa-user"></span>
-                <input type="text" placeholder="name">
-            </div>
+            <p>
+                Cfood یک فروشگاه آنلاین مدرن برای سفارش انواع فست‌فود،
+                محصولات پروتئینی، سوسیس، ژامبون و فرآورده‌های گوشتی است.
+            </p>
 
-            <div class="inputBax">
-                <span class="fas fa-envelope"></span>
-                <input type="email" placeholder="email">
-            </div>
+            <p>
+                هدف ما ارائه محصولات باکیفیت، تازه و خوشمزه
+                با سریع‌ترین زمان ارسال است.
+            </p>
 
-            <div class="inputBax">
-                <span class="fas fa-phone"></span>
-                <input type="number" placeholder="number">
-            </div>
-            <input type="submit" value="contact now" class="btn">
-        </form>
+            <a href="#" class="primary-btn">
+                مشاهده محصولات
+            </a>
 
+        </div>
 
     </div>
 
 </section>
 
 <section class="blogs" id="blogs">
-    <h1 class="heading">our <span>bloge</span></h1>
-    <div class="box-container">
-        <div class="box">
-            <div class="image">
-                <img src="{% static 'Images/footer-bg.jpg' %}" alt="">
-            </div>
-            <div class="content">
-                <a href="" class="title">testy and refeshing coffee</a>
-                <span>by admin / 2024</span>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, ipsam?</p>
-                <a href="" class="btn">read more</a>
+
+    <div class="section-title">
+        <span>وبلاگ</span>
+        <h2>آخرین مقالات</h2>
+    </div>
+
+    <div class="blog-container">
+
+        <div class="blog-card">
+
+            <img src="{% static 'Images/IMG_20260512_182540_225.jpg' %}" alt="">
+
+            <div class="blog-content">
+
+                <span>۱۴۰۵/۰۲/۲۲</span>
+
+                <h3>
+                    بهترین ترکیب‌ها برای برگر حرفه‌ای
+                </h3>
+
+                <p>
+                    چند ترکیب جذاب برای تهیه برگر حرفه‌ای در خانه.
+                </p>
+
+                <a href="#">
+                    مطالعه بیشتر
+                </a>
 
             </div>
+
         </div>
 
-        <div class="box">
-            <div class="image">
-                <img src="{% static 'Images/footer-bg.jpg' %}" alt="">
+        <div class="blog-card">
+
+            <img src="{% static 'Images/susis.jpg' %}" alt="">
+
+            <div class="blog-content">
+
+                <span>۱۴۰۵/۰۲/۲۰</span>
+
+                <h3>
+                    چگونه سوسیس باکیفیت انتخاب کنیم؟
+                </h3>
+
+                <p>
+                    نکاتی مهم برای خرید محصولات پروتئینی سالم.
+                </p>
+
+                <a href="#">
+                    مطالعه بیشتر
+                </a>
+
             </div>
-            <div class="content">
-                <a href="" class="title">testy and refeshing coffee</a>
-                <span>by admin / 2024</span>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, ipsam?</p>
-                <a href="" class="btn">read more</a>
-            </div>
+
         </div>
 
-        <div class="box">
-            <div class="image">
-                <img src="{% static 'Images/footer-bg.jpg' %}" alt="">
+        <div class="blog-card">
+
+            <img src="{% static 'Images/IMG_20260512_182550_052.jpg' %}" alt="">
+
+            <div class="blog-content">
+
+                <span>۱۴۰۵/۰۲/۱۸</span>
+
+                <h3>
+                    راز خوشمزگی فست‌فود حرفه‌ای
+                </h3>
+
+                <p>
+                    چند نکته برای خوشمزه‌تر شدن غذاهای فست‌فودی.
+                </p>
+
+                <a href="#">
+                    مطالعه بیشتر
+                </a>
+
             </div>
-            <div class="content">
-                <a href="" class="title">testy and refeshing coffee</a>
-                <span>by admin / 2024</span>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, ipsam?</p>
-                <a href="" class="btn">read more</a>
-            </div>
+
         </div>
 
     </div>
+
 </section>
 
-<section class="footer">
+<section class="contact" id="contact">
 
-    <div class="share">
-        <a href="#" class="fab fa-facebook-f"></a>
-        <a href="#" class="fab fa-twitter"></a>
-        <a href="#" class="fab fa-instagram"></a>
-        <a href="#" class="fab fa-linkedin"></a>
-        <a href="#" class="fab fa-pinterest"></a>
+    <div class="section-title">
+        <span>تماس با ما</span>
+        <h2>ارتباط با Cfood</h2>
     </div>
 
-    <div class="links">
-        <a href="#">home</a>
-        <a href="#">about</a>
-        <a href="#">menu</a>
-        <a href="#">products</a>
-        <a href="#">review</a>
-        <a href="#">contact</a>
-        <a href="#">blogs</a>
+    <div class="contact-container">
+
+        <div class="contact-box">
+            <i class="fas fa-phone"></i>
+            <h3>شماره تماس</h3>
+            <p>09123456789</p>
+        </div>
+
+        <div class="contact-box">
+            <i class="fas fa-envelope"></i>
+            <h3>ایمیل</h3>
+            <p>info@cfood.ir</p>
+        </div>
+
+        <div class="contact-box">
+            <i class="fas fa-location-dot"></i>
+            <h3>آدرس</h3>
+            <p>تهران، ایران</p>
+        </div>
+
     </div>
-    <div class="credit">created by <span> MH-khalili</span> | all rights reserved</div>
+
 </section>
 
+{% endblock %}
 
-<script src="{% static 'js/script.js' %}"></script>
-<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
-<script>
-    {% for msg in messages %}
-        alertify.set('notifier', 'position', 'top-right');
-        alertify.success('{{ msg }}');
-    {% endfor %}
-</script>
-
-</body>
-</html>

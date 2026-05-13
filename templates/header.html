@@ -1,0 +1,44 @@
+{% load static %}
+
+
+<header class="header">
+
+    <a href="#" class="logo">
+        <span class="logo-text">Cfood</span>
+    </a>
+
+    <nav class="navbar">
+        <a href="/">خانه</a>
+        <a href="/menu">فست فود</a>
+        <a href="#">محصولات گوشتی</a>
+        <a href="#blogs">وبلاگ</a>
+        <a href="#about">درباره ما</a>
+        <a href="#contact">تماس با ما</a>
+    </nav>
+
+    <div class="header-left">
+
+        <div class="icon-btn">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">2</span>
+        </div>
+
+        <div class="icon-btn" id="search-btn">
+        <i class="fas fa-search"></i>
+        </div>
+
+        <div class="search-form">
+            <input type="text" placeholder="جستجو..." id="search-box">
+        </div>
+
+        <button class="login-btn" {% if not user.is_authenticated %} id="openModalBtn" {% endif %}>
+             {% if user.is_authenticated %}<a href="{% url 'account:logout' %}" class="login-btn">خروج</a>
+             {% else %}
+            ورود / ثبت نام
+            {% endif %}
+        </button>
+
+    </div>
+
+
+</header>
