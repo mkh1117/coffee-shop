@@ -1,0 +1,464 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+وبلاگ Cfood
+{% endblock %}
+
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'style/blog.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
+{% endblock %}
+
+
+
+
+{% block content %}
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>
+            طعم خوب،
+            لحظات ماندگار.
+        </h1>
+
+        <p>
+            سفارش آنلاین انواع فست‌فود، سوسیس، ژامبون و محصولات پروتئینی
+            با Cfood، تجربه طعمی متفاوت و کیفیتی بی‌نظیر را امتحان کنید.
+        </p>
+    </div>
+</section>
+
+<!-- FILTERS -->
+
+<section class="controls">
+
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="جستجو در مقالات...">
+    </div>
+
+    <div class="categories">
+        <button class="filter-btn active" data-category="all">همه</button>
+        <button class="filter-btn" data-category="fastfood">فست فود</button>
+        <button class="filter-btn" data-category="protein">پروتئینی</button>
+        <button class="filter-btn" data-category="tips">نکات آشپزی</button>
+    </div>
+
+</section>
+
+<!-- BLOG -->
+
+<section class="blog-section">
+
+    <h2 class="blog-title">جدیدترین مقالات Cfood</h2>
+
+    <div class="blog-count" id="blogCount"></div>
+
+    <div class="blog-grid" id="blogGrid">
+
+        <!-- ARTICLE 1 -->
+
+        <div class="blog-card" data-category="fastfood">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1200&auto=format&fit=crop">
+
+            <div class="blog-content">
+
+                <span class="category">فست فود</span>
+
+                <h3>راز خوشمزه شدن برگرهای حرفه‌ای</h3>
+
+                <p>
+                    ترکیب گوشت مناسب و زمان پخت استاندارد باعث طعمی متفاوت می‌شود.
+                </p>
+
+                <div class="full-text">
+                    استفاده از گوشت تازه، ادویه مناسب و گریل استاندارد می‌تواند کیفیت برگر را چند برابر کند.
+                </div>
+
+                <span class="read-more">ادامه مطلب</span>
+
+                <div class="actions">
+                    <button class="like-btn">❤️ <span>0</span></button>
+                    <button class="comment-btn">💬 کامنت</button>
+                </div>
+
+                <div class="comment-box">
+                    <textarea placeholder="نظر خود را بنویسید..."></textarea>
+                    <button>ارسال</button>
+                    <div class="comments-list"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ARTICLE 2 -->
+
+        <div class="blog-card" data-category="protein">
+            <img src="https://images.unsplash.com/photo-1603048297172-c92544798d5a?q=80&w=1200&auto=format&fit=crop">
+
+            <div class="blog-content">
+
+                <span class="category">پروتئینی</span>
+
+                <h3>بهترین روش نگهداری ژامبون</h3>
+
+                <p>
+                    دمای مناسب یخچال و بسته‌بندی اصولی ماندگاری را افزایش می‌دهد.
+                </p>
+
+                <div class="full-text">
+                    بهتر است ژامبون‌ها در ظرف دربسته و دمای زیر 4 درجه نگهداری شوند.
+                </div>
+
+                <span class="read-more">ادامه مطلب</span>
+
+                <div class="actions">
+                    <button class="like-btn">❤️ <span>0</span></button>
+                    <button class="comment-btn">💬 کامنت</button>
+                </div>
+
+                <div class="comment-box">
+                    <textarea placeholder="نظر خود را بنویسید..."></textarea>
+                    <button>ارسال</button>
+                    <div class="comments-list"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ARTICLE 3 -->
+
+        <div class="blog-card" data-category="tips">
+            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200&auto=format&fit=crop">
+
+            <div class="blog-content">
+
+                <span class="category">نکات آشپزی</span>
+
+                <h3>ترفندهای سرخ کردن سیب زمینی</h3>
+
+                <p>
+                    استفاده از آب سرد و روغن مناسب باعث ترد شدن سیب زمینی می‌شود.
+                </p>
+
+                <div class="full-text">
+                    قبل از سرخ کردن، سیب زمینی‌ها را 30 دقیقه در آب سرد قرار دهید.
+                </div>
+
+                <span class="read-more">ادامه مطلب</span>
+
+                <div class="actions">
+                    <button class="like-btn">❤️ <span>0</span></button>
+                    <button class="comment-btn">💬 کامنت</button>
+                </div>
+
+                <div class="comment-box">
+                    <textarea placeholder="نظر خود را بنویسید..."></textarea>
+                    <button>ارسال</button>
+                    <div class="comments-list"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ARTICLE 4 -->
+
+        <div class="blog-card" data-category="fastfood">
+            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop">
+
+            <div class="blog-content">
+
+                <span class="category">فست فود</span>
+
+                <h3>پیتزای ایتالیایی یا آمریکایی؟</h3>
+
+                <p>
+                    تفاوت ضخامت خمیر و نوع پنیر مهم‌ترین تفاوت این دو سبک است.
+                </p>
+
+                <div class="full-text">
+                    پیتزای ایتالیایی خمیر نازک‌تر و پخت سریع‌تری نسبت به پیتزای آمریکایی دارد.
+                </div>
+
+                <span class="read-more">ادامه مطلب</span>
+
+                <div class="actions">
+                    <button class="like-btn">❤️ <span>0</span></button>
+                    <button class="comment-btn">💬 کامنت</button>
+                </div>
+
+                <div class="comment-box">
+                    <textarea placeholder="نظر خود را بنویسید..."></textarea>
+                    <button>ارسال</button>
+                    <div class="comments-list"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ARTICLE 5 -->
+
+        <div class="blog-card" data-category="protein">
+            <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?q=80&w=1200&auto=format&fit=crop">
+
+            <div class="blog-content">
+
+                <span class="category">پروتئینی</span>
+
+                <h3>فواید سوسیس‌های پروتئینی استاندارد</h3>
+
+                <p>
+                    انتخاب برند معتبر کیفیت و سلامت محصول را تضمین می‌کند.
+                </p>
+
+                <div class="full-text">
+                    سوسیس‌های استاندارد دارای درصد پروتئین مشخص و مواد اولیه سالم هستند.
+                </div>
+
+                <span class="read-more">ادامه مطلب</span>
+
+                <div class="actions">
+                    <button class="like-btn">❤️ <span>0</span></button>
+                    <button class="comment-btn">💬 کامنت</button>
+                </div>
+
+                <div class="comment-box">
+                    <textarea placeholder="نظر خود را بنویسید..."></textarea>
+                    <button>ارسال</button>
+                    <div class="comments-list"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ARTICLE 6 -->
+
+        <div class="blog-card" data-category="tips">
+            <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?q=80&w=1200&auto=format&fit=crop">
+
+            <div class="blog-content">
+
+                <span class="category">نکات آشپزی</span>
+
+                <h3>ادویه‌های مناسب مرغ سوخاری</h3>
+
+                <p>
+                    ترکیب پاپریکا، فلفل و سیر طعم فوق‌العاده‌ای ایجاد می‌کند.
+                </p>
+
+                <div class="full-text">
+                    مرینیت کردن مرغ قبل از سرخ شدن کیفیت نهایی را بسیار بهتر می‌کند.
+                </div>
+
+                <span class="read-more">ادامه مطلب</span>
+
+                <div class="actions">
+                    <button class="like-btn">❤️ <span>0</span></button>
+                    <button class="comment-btn">💬 کامنت</button>
+                </div>
+
+                <div class="comment-box">
+                    <textarea placeholder="نظر خود را بنویسید..."></textarea>
+                    <button>ارسال</button>
+                    <div class="comments-list"></div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="no-results" id="noResults">
+        مقاله‌ای پیدا نشد.
+    </div>
+
+</section>
+{% endblock %}
+
+
+{% block js %}
+<script>
+
+const searchInput = document.getElementById("searchInput");
+const filterBtns = document.querySelectorAll(".filter-btn");
+const blogCards = document.querySelectorAll(".blog-card");
+const blogCount = document.getElementById("blogCount");
+const noResults = document.getElementById("noResults");
+
+let currentCategory = "all";
+
+function updateBlogs(){
+
+    let visibleCount = 0;
+
+    blogCards.forEach((card,index)=>{
+
+        const title = card.querySelector("h3").textContent.toLowerCase();
+        const text = card.querySelector("p").textContent.toLowerCase();
+        const category = card.dataset.category;
+        const search = searchInput.value.toLowerCase();
+
+        const matchesSearch =
+            title.includes(search) ||
+            text.includes(search);
+
+        const matchesCategory =
+            currentCategory === "all" ||
+            category === currentCategory;
+
+        if(matchesSearch && matchesCategory){
+
+            card.style.display = "block";
+            visibleCount++;
+
+        }else{
+
+            card.style.display = "none";
+        }
+
+    });
+
+    blogCount.textContent = `${visibleCount} مقاله نمایش داده شد`;
+
+    noResults.style.display =
+        visibleCount === 0 ? "block" : "none";
+}
+
+searchInput.addEventListener("input",updateBlogs);
+
+filterBtns.forEach(btn=>{
+
+    btn.addEventListener("click",()=>{
+
+        filterBtns.forEach(b=>b.classList.remove("active"));
+
+        btn.classList.add("active");
+
+        currentCategory = btn.dataset.category;
+
+        updateBlogs();
+    });
+
+});
+
+/* READ MORE */
+
+document.querySelectorAll(".read-more").forEach(btn=>{
+
+    btn.addEventListener("click",()=>{
+
+        const text =
+            btn.previousElementSibling;
+
+        if(text.style.display === "block"){
+
+            text.style.display = "none";
+            btn.textContent = "ادامه مطلب";
+
+        }else{
+
+            text.style.display = "block";
+            btn.textContent = "بستن";
+        }
+
+    });
+
+});
+
+/* LIKE */
+
+document.querySelectorAll(".like-btn").forEach((btn,index)=>{
+
+    const span = btn.querySelector("span");
+
+    let likes =
+        localStorage.getItem("likes-"+index) || 0;
+
+    span.textContent = likes;
+
+    btn.addEventListener("click",()=>{
+
+        likes++;
+
+        localStorage.setItem("likes-"+index,likes);
+
+        span.textContent = likes;
+    });
+
+});
+
+/* COMMENTS */
+
+document.querySelectorAll(".blog-card").forEach((card,index)=>{
+
+    const commentBtn =
+        card.querySelector(".comment-btn");
+
+    const commentBox =
+        card.querySelector(".comment-box");
+
+    const sendBtn =
+        commentBox.querySelector("button");
+
+    const textarea =
+        commentBox.querySelector("textarea");
+
+    const commentsList =
+        commentBox.querySelector(".comments-list");
+
+    commentBtn.addEventListener("click",()=>{
+
+        commentBox.style.display =
+            commentBox.style.display === "block"
+            ? "none"
+            : "block";
+    });
+
+    function loadComments(){
+
+        const comments =
+            JSON.parse(localStorage.getItem("comments-"+index)) || [];
+
+        commentsList.innerHTML = "";
+
+        comments.forEach(comment=>{
+
+            commentsList.innerHTML +=
+            `<div class="comment-item">${comment}</div>`;
+        });
+    }
+
+    loadComments();
+
+    sendBtn.addEventListener("click",()=>{
+
+        if(textarea.value.trim() === "") return;
+
+        const comments =
+            JSON.parse(localStorage.getItem("comments-"+index)) || [];
+
+        comments.push(textarea.value);
+
+        localStorage.setItem(
+            "comments-"+index,
+            JSON.stringify(comments)
+        );
+
+        textarea.value = "";
+
+        loadComments();
+
+    });
+
+});
+
+updateBlogs();
+
+</script>
+
+{% endblock %}
+
+
