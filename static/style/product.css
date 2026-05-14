@@ -1,0 +1,174 @@
+:root{
+    --primary:#b22222;
+    --dark:#1b1b1b;
+    --cream:#f8f3ef;
+    --white:#ffffff;
+    --text:#3a2e26;
+    --gray:#7b6d62;
+}
+
+body{
+    padding-top: 10rem;
+    margin: 0;
+    font-family: sans-serif;
+    background: var(--cream);
+}
+
+/* ========================= */
+
+.meat-products-page{
+    padding: 60px 7%;
+    text-align: center;
+}
+
+.meat-products-page h1{
+    font-size: 5rem;
+    color: var(--dark);
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.meat-products-page h1::after{
+    content: "";
+    width: 120px;
+    height: 4px;
+    background: var(--primary);
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 20px;
+}
+
+/* ========================= */
+
+.product-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+    gap: 35px;
+}
+
+/* ========================= */
+
+.card{
+    background: rgba(255,255,255,0.92);
+    border: 1px solid rgba(255,255,255,0.4);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border-radius: 25px;
+    padding: 35px 25px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.20),
+    inset 0 1px 1px rgba(255,255,255,.6);
+
+    transition: .35s ease;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before{
+    content: "";
+    position: absolute;
+
+    width: 200px;
+    height: 200px;
+
+    background: rgba(178,34,34,.12);
+
+    border-radius: 50%;
+
+    top: -80px;
+    right: -80px;
+}
+
+.card:hover{
+    transform: translateY(-12px) scale(1.02);
+
+    box-shadow:
+    0 18px 40px rgba(0,0,0,.28),
+    inset 0 1px 1px rgba(255,255,255,.8);
+}
+
+/* ========================= */
+
+.card img{
+    width: 170px;
+    margin-bottom: 20px;
+
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,.2));
+
+    transition: .4s;
+}
+
+.card:hover img{
+    transform: scale(1.08) rotate(-3deg);
+}
+
+/* ========================= */
+
+.card h3{
+    color: var(--text);
+    font-size: 2.4rem;
+    margin-bottom: 15px;
+}
+
+.card p{
+    color: var(--gray);
+    line-height: 2;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.card span{
+    display: inline-block;
+
+    background: var(--primary);
+    color: white;
+
+    padding: 10px 22px;
+
+    border-radius: 50px;
+
+    font-size: 1.6rem;
+    font-weight: bold;
+
+    box-shadow: 0 5px 15px rgba(178,34,34,.35);
+}
+
+.product-category{
+    margin-bottom: 80px;
+}
+
+.product-category h2{
+    color: var(--dark);
+    font-size: 3rem;
+    margin-bottom: 35px;
+    text-align: right;
+    padding-right: 10px;
+}
+
+/* ========================= */
+
+@media(max-width:768px){
+
+    .meat-products-page{
+        padding: 40px 20px;
+    }
+
+    .meat-products-page h1{
+        font-size: 3.5rem;
+    }
+
+    .card{
+        padding: 25px 20px;
+    }
+
+    .card h3{
+        font-size: 2rem;
+    }
+
+}

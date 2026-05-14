@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+cfood محصولات گوشتی
+{% endblock %}
+
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'style/product.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+<section class="meat-products-page">
+
+    <h1>محصولات گوشتی</h1>
+
+    <!-- دسته استیک -->
+    <div class="product-category">
+        <h2>🥩 استیک‌ها</h2>
+
+        <div class="product-container">
+
+            <div class="card">
+                <img src="{% static 'Images/meat1.png' %}" alt="">
+                <h3>استیک ریب‌آی</h3>
+                <p>گوشت گوساله گریل شده با سس مخصوص</p>
+                <span>۶۸۰ هزار تومان</span>
+            </div>
+
+            <div class="card">
+                <img src="{% static 'Images/meat2.png' %}" alt="">
+                <h3>استیک فیله</h3>
+                <p>فیله نرم و آبدار با سبزیجات</p>
+                <span>۷۲۰ هزار تومان</span>
+            </div>
+
+            <div class="card">
+                <img src="{% static 'Images/meat3.png' %}" alt="">
+                <h3>استیک دودی</h3>
+                <p>طعم دودی خاص با کره گیاهی</p>
+                <span>۷۹۰ هزار تومان</span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- دسته کباب -->
+    <div class="product-category">
+        <h2>🍢 کباب‌ها</h2>
+
+        <div class="product-container">
+
+            <div class="card">
+                <img src="{% static 'Images/meat4.png' %}" alt="">
+                <h3>کباب لقمه</h3>
+                <p>گوشت تازه با ادویه مخصوص</p>
+                <span>۴۲۰ هزار تومان</span>
+            </div>
+
+            <div class="card">
+                <img src="{% static 'Images/meat5.png' %}" alt="">
+                <h3>کباب برگ</h3>
+                <p>گوشت راسته زعفرانی</p>
+                <span>۵۸۰ هزار تومان</span>
+            </div>
+
+            <div class="card">
+                <img src="{% static 'Images/meat6.png' %}" alt="">
+                <h3>جوجه کباب</h3>
+                <p>مرغ مزه‌دار شده با لیمو</p>
+                <span>۳۶۰ هزار تومان</span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- دسته سوسیس و ژامبون -->
+    <div class="product-category">
+        <h2>🌭 فرآورده‌های گوشتی</h2>
+
+        <div class="product-container">
+
+            <div class="card">
+                <img src="{% static 'Images/meat7.png' %}" alt="">
+                <h3>سوسیس دودی</h3>
+                <p>تهیه شده از گوشت خالص</p>
+                <span>۲۲۰ هزار تومان</span>
+            </div>
+
+            <div class="card">
+                <img src="{% static 'Images/meat8.png' %}" alt="">
+                <h3>ژامبون گوشت</h3>
+                <p>برش تازه و خوش‌طعم</p>
+                <span>۲۸۰ هزار تومان</span>
+            </div>
+
+            <div class="card">
+                <img src="{% static 'Images/meat9.png' %}" alt="">
+                <h3>هات‌داگ ویژه</h3>
+                <p>هات‌داگ تنوری با پنیر</p>
+                <span>۳۱۰ هزار تومان</span>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+{%  endblock %}
